@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Enable Git Debug Logging
+      run: |
+        git config --global --add safe.directory /github/workspace
+        git config --global --get-regexp 'safe.directory'
+        echo "GIT_TRACE=1" >> $GITHUB_ENV
+        echo "GIT_CURL_VERBOSE=1" >> $GITHUB_ENV
+
     - name: Checkout code
       uses: actions/checkout@v3
 
